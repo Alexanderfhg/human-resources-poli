@@ -3,6 +3,7 @@ package server;
 import java.io.*;
 import java.net.*;
 import java.sql.*;
+import javax.swing.JOptionPane;
 
 // @author Alexander on Dec 3, 2023
 public class SocketServer {
@@ -144,6 +145,20 @@ class ClientHandler implements Runnable {
     private boolean eliminarEmpleado(int empleadoId, Connection connection) throws SQLException {
         // Lógica para realizar la eliminación física de un empleado
 
+        // Obtener los datos del empleado antes de eliminarlo
+        Empleado empleado = seleccionarEmpleado(empleadoId, connection);
+
+        if (empleado != null) {
+            // Lógica para agregar una entrada en la tabla "historico"
+            try ( PreparedStatement statement = connection.prepareStatement(
+                    "INSERT INTO historico (fechaRetiro, cargoId, dptoId) VALUES (CURRENT_DATE, ?, ?)")) {
+                statement.setInt(1, empleado.getCargoId());
+                statement.setInt(2, empleado.getDptoId());
+
+                // Ejecuta la inserción en la tabla "historico"
+                statement.executeUpdate();
+            }
+        }
         try ( PreparedStatement statement = connection.prepareStatement(
                 "DELETE FROM empleados WHERE id = ?")) {
             statement.setInt(1, empleadoId);
