@@ -3,9 +3,17 @@ package client;
 import javax.swing.JOptionPane;
 import server.Empleado;
 
-// @author Alexander on Dec 3, 2023
+/**
+ * Clase que representa la interfaz gráfica para consultar la información de un empleado.
+ * Permite al usuario ingresar el ID del empleado y enviar la solicitud al servidor para obtener los datos del empleado.
+ * @author Subgrupo1
+ * @since Dec 3, 2023
+ */
 public class ConsultarEmpleado extends javax.swing.JFrame {
 
+    /**
+     * Constructor de la clase ConsultarEmpleado.
+     */
     public ConsultarEmpleado() {
         initComponents();
     }
@@ -182,6 +190,13 @@ public class ConsultarEmpleado extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Método invocado al hacer clic en el botón "Consultar".
+     * Recopila el ID del empleado ingresado por el usuario y envía la solicitud al servidor
+     * para obtener los datos del empleado con ese ID.
+     * Muestra un mensaje de error si no se encuentra el empleado.
+     * @param evt Evento de acción generado por el botón.
+     */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
             int empleadoId = Integer.parseInt(jTextFieldEmployeeId.getText());
@@ -200,6 +215,10 @@ public class ConsultarEmpleado extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    /**
+     * Método para actualizar la interfaz de usuario con la información del empleado seleccionado.
+     * @param empleadoSeleccionado Objeto Empleado con la información del empleado.
+     */
     private static void actualizarInterfazUsuario(Empleado empleadoSeleccionado) {
         jLabelFirstName.setText(empleadoSeleccionado.getPrimerNombre());
         jLabelSecondName.setText(empleadoSeleccionado.getSegundoNombre());
@@ -213,7 +232,8 @@ public class ConsultarEmpleado extends javax.swing.JFrame {
     }
 
     /**
-     * @param args the command line arguments
+     * Método principal para ejecutar la interfaz gráfica.
+     * @param args Argumentos de la línea de comandos (no utilizado en este caso).
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

@@ -4,9 +4,17 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import server.Empleado;
 
-// @author Alexander on Dec 3, 2023
+/**
+ * Clase que representa la interfaz gráfica para eliminar un empleado.
+ * Permite al usuario ingresar el ID del empleado a eliminar y enviar la solicitud al servidor.
+ * @author Subgrupo1
+ * @since Dec 3, 2023
+ */
 public class EliminarEmpleado extends javax.swing.JFrame {
 
+    /**
+     * Constructor de la clase EliminarEmpleado.
+     */
     public EliminarEmpleado() {
         initComponents();
     }
@@ -70,6 +78,13 @@ public class EliminarEmpleado extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Método invocado al hacer clic en el botón "Eliminar".
+     * Recopila el ID del empleado ingresado por el usuario y envía la solicitud al servidor
+     * para eliminar al empleado con ese ID.
+     * Maneja excepciones de clase no encontrada.
+     * @param evt Evento de acción generado por el botón.
+     */
     private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
         try {
             int empleadoId = Integer.parseInt(jTextFieldEmployeeId.getText());
@@ -82,6 +97,10 @@ public class EliminarEmpleado extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonDeleteActionPerformed
 
+    /**
+     * Método principal para ejecutar la interfaz gráfica.
+     * @param args Argumentos de la línea de comandos (no utilizado en este caso).
+     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

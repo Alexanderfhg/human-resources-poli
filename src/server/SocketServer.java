@@ -5,12 +5,20 @@ import java.net.*;
 import java.sql.*;
 import javax.swing.JOptionPane;
 
-// @author Alexander on Dec 3, 2023
+/**
+ * Clase que representa un servidor de sockets para la gestión de empleados.
+ * @author Subgrupo1
+ * @since Dec 3, 2023
+ */
 public class SocketServer {
 
     // Puerto donde escucha el servidor
     private static final int PUERTO = 5000;
 
+    /**
+     * Método principal que inicia el servidor y gestiona las conexiones entrantes.
+     * @param args Los argumentos de la línea de comandos (no se utilizan en este caso).
+     */
     public static void main(String[] args) {
         try {
             ServerSocket serverSocket = new ServerSocket(PUERTO);
@@ -26,14 +34,24 @@ public class SocketServer {
     }
 }
 
+/**
+ * Clase que maneja la conexión con un cliente.
+ */
 class ClientHandler implements Runnable {
 
     private Socket clientSocket;
 
+    /**
+     * Constructor de la clase.
+     * @param socket El socket del cliente.
+     */
     public ClientHandler(Socket socket) {
         this.clientSocket = socket;
     }
 
+    /**
+     * Método que se ejecuta en un hilo separado para gestionar la comunicación con el cliente.
+     */
     @Override
     public void run() {
         try {
@@ -92,6 +110,12 @@ class ClientHandler implements Runnable {
         }
     }
 
+    /**
+     * Método para la inserción de un empleado en la base de datos.
+     * @param empleado El empleado a ser insertado.
+     * @param connection La conexión a la base de datos.
+     * @throws SQLException Si ocurre un error de SQL.
+     */
     private void insertarEmpleado(Empleado empleado, Connection connection) throws SQLException {
         // Aquí implementa la lógica específica para la inserción de un empleado en la base de datos
 
@@ -112,6 +136,13 @@ class ClientHandler implements Runnable {
         }
     }
 
+    /**
+     * Método para la selección de un empleado en la base de datos por su ID.
+     * @param empleadoId El ID del empleado a ser seleccionado.
+     * @param connection La conexión a la base de datos.
+     * @return El objeto Empleado seleccionado.
+     * @throws SQLException Si ocurre un error de SQL.
+     */
     private Empleado seleccionarEmpleado(int empleadoId, Connection connection) throws SQLException {
         // Lógica para buscar el empleado en la base de datos por su ID
 
@@ -142,6 +173,13 @@ class ClientHandler implements Runnable {
         return empleado;
     }
 
+    /**
+     * Método para la eliminación de un empleado en la base de datos.
+     * @param empleadoId El ID del empleado a ser eliminado.
+     * @param connection La conexión a la base de datos.
+     * @return True si la eliminación fue exitosa, False en caso contrario.
+     * @throws SQLException Si ocurre un error de SQL.
+     */
     private boolean eliminarEmpleado(int empleadoId, Connection connection) throws SQLException {
         // Lógica para realizar la eliminación física de un empleado
 
@@ -171,6 +209,14 @@ class ClientHandler implements Runnable {
         }
     }
 
+    /**
+     * Método para la actualización de un empleado en la base de datos.
+     * @param empleadoId El ID del empleado a ser actualizado.
+     * @param empleado El objeto Empleado con los nuevos datos.
+     * @param connection La conexión a la base de datos.
+     * @return True si la actualización fue exitosa, False en caso contrario.
+     * @throws SQLException Si ocurre un error de SQL.
+     */
     private boolean actualizarEmpleado(int empleadoId, Empleado empleado, Connection connection) throws SQLException {
         // Lógica para actualizar un empleado en la base de datos
 

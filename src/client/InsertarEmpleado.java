@@ -5,9 +5,17 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import server.Empleado;
 
-// @author Alexander on Dec 3, 2023
+/**
+ * Clase que representa la interfaz gráfica para insertar un nuevo empleado.
+ * Permite al usuario ingresar información sobre el empleado y enviarla al servidor.
+ * @author Subgrupo1
+ * @since Dec 3, 2023
+ */
 public class InsertarEmpleado extends javax.swing.JFrame {
 
+    /**
+     * Constructor de la clase InsertarEmpleado.
+     */
     public InsertarEmpleado() {
         initComponents();
     }
@@ -155,6 +163,14 @@ public class InsertarEmpleado extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Método invocado al hacer clic en el botón "Insertar".
+     * Recopila la información ingresada por el usuario, crea un objeto Empleado
+     * y lo envía al servidor para su inserción en la base de datos.
+     * Muestra un mensaje de éxito o error al usuario.
+     * Maneja excepciones de formato y de clase no encontrada.
+     * @param evt Evento de acción generado por el botón.
+     */
     private void jButtonCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCreateActionPerformed
         try {
             String primerNombre = jTextFieldFirstName.getText();
@@ -182,7 +198,8 @@ public class InsertarEmpleado extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCreateActionPerformed
 
     /**
-     * @param args the command line arguments
+     * Método principal para ejecutar la interfaz gráfica.
+     * @param args Argumentos de la línea de comandos (no utilizado en este caso).
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

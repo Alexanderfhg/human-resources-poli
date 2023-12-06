@@ -3,11 +3,19 @@ package client;
 import javax.swing.JOptionPane;
 import server.Empleado;
 
-// @author Alexander on Dec 3, 2023
+/**
+ * Clase que representa la interfaz gráfica para actualizar la información de un empleado.
+ * Permite al usuario buscar un empleado por su ID y actualizar sus datos.
+ * @author Subgrupo1
+ * @since Dec 3, 2023
+ */
 public class ActualizarEmpleado extends javax.swing.JFrame {
 
     private int empleadoId;
 
+    /**
+     * Constructor de la clase ActualizarEmpleado.
+     */
     public ActualizarEmpleado() {
         initComponents();
     }
@@ -202,6 +210,13 @@ public class ActualizarEmpleado extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Método invocado al hacer clic en el botón "Buscar".
+     * Recopila el ID del empleado ingresado por el usuario y envía la solicitud al servidor
+     * para obtener los datos del empleado con ese ID.
+     * Muestra un mensaje de error si no se encuentra el empleado.
+     * @param evt Evento de acción generado por el botón.
+     */
     private void jButtonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSearchActionPerformed
         try {
             empleadoId = Integer.parseInt(jTextFieldEmployeeId.getText());
@@ -220,6 +235,12 @@ public class ActualizarEmpleado extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonSearchActionPerformed
 
+    /**
+     * Método invocado al hacer clic en el botón "Actualizar".
+     * Envia la información actualizada del empleado al servidor para su procesamiento.
+     * Muestra un mensaje informando sobre el resultado de la actualización.
+     * @param evt Evento de acción generado por el botón.
+     */
     private void jButtonUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateActionPerformed
         try {
             SocketClient socketClient = new SocketClient();
@@ -253,6 +274,10 @@ public class ActualizarEmpleado extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonUpdateActionPerformed
 
+    /**
+     * Método para actualizar la interfaz de usuario con la información del empleado seleccionado.
+     * @param empleadoSeleccionado Objeto Empleado con la información del empleado.
+     */
     private static void actualizarInterfazUsuario(Empleado empleadoSeleccionado) {
         jTextFieldFirstName.setText(empleadoSeleccionado.getPrimerNombre());
         jTextFieldSecondName.setText(empleadoSeleccionado.getSegundoNombre());

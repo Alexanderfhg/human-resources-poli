@@ -7,18 +7,30 @@ import java.net.Socket;
 import javax.swing.JOptionPane;
 import server.Empleado;
 
-// @author Alexander on Dec 3, 2023
+/**
+ * Clase que representa el cliente para la gestión de empleados mediante sockets.
+ * Permite la conexión con el servidor y envío/recepción de datos.
+ * También contiene métodos para manejar la interfaz gráfica de usuario.
+ * @author Subgrupo1
+ * @since Dec 3, 2023
+ */
 public class SocketClient extends javax.swing.JFrame {
 
     private ObjectOutputStream out;
     public ObjectInputStream in;
     private Socket socket;
 
+    /**
+     * Constructor de la clase SocketClient.
+     */
     public SocketClient() {
         initComponents();
         conectarAlServidor();
     }
 
+    /**
+     * Método privado para establecer la conexión con el servidor.
+     */
     private void conectarAlServidor() {
         try {
             socket = new Socket("localhost", 5000);
@@ -29,7 +41,12 @@ public class SocketClient extends javax.swing.JFrame {
         }
     }
 
-    // Versión que recibe un Empleado
+    /**
+     * Método para enviar datos al servidor.
+     * @param comando El comando a ser enviado.
+     * @param empleado El objeto Empleado a ser enviado (en caso de "Insert" y "Update").
+     * @throws ClassNotFoundException Si ocurre un error al recibir datos del servidor.
+     */
     public void enviarDatosAlServidor(String comando, Empleado empleado) throws ClassNotFoundException {
         try {
             out.writeObject(comando);
@@ -46,6 +63,13 @@ public class SocketClient extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Método para enviar datos al servidor y recibir un objeto Empleado.
+     * @param comando El comando a ser enviado.
+     * @param empleadoId El ID del empleado a ser enviado (en caso de "Select" y "Delete").
+     * @return El objeto Empleado recibido del servidor.
+     * @throws ClassNotFoundException Si ocurre un error al recibir datos del servidor.
+     */
     // Versión que recibe un entero
     public Empleado enviarDatosAlServidor(String comando, int empleadoId) throws ClassNotFoundException {
         try {
@@ -74,6 +98,14 @@ public class SocketClient extends javax.swing.JFrame {
         return null;
     }
 
+    /**
+     * Método para enviar datos al servidor y recibir una confirmación.
+     * @param comando El comando a ser enviado.
+     * @param empleadoId El ID del empleado a ser enviado (en caso de "Update").
+     * @param empleado El objeto Empleado a ser enviado (en caso de "Update").
+     * @return La confirmación recibida del servidor.
+     * @throws ClassNotFoundException Si ocurre un error al recibir datos del servidor.
+     */
     public String enviarDatosAlServidor(String comando, int empleadoId, Empleado empleado) throws ClassNotFoundException {
         try {
             out.writeObject(comando);
